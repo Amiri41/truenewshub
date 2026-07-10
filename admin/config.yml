@@ -1,0 +1,43 @@
+backend:
+  name: github
+  repo: Amiri41/truenewshub
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: "en"
+
+collections:
+  - name: "articles"
+    label: "Articles / المقالات / Articles"
+    label_singular: "Article"
+    folder: "content/articles"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title (EN)", name: "title_en", widget: "string" }
+      - { label: "العنوان (AR)", name: "title_ar", widget: "string", required: false }
+      - { label: "Titre (FR)", name: "title_fr", widget: "string", required: false }
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["sports", "politics", "economy", "world"]
+
+      - label: "Language"
+        name: "language"
+        widget: "select"
+        options: ["en", "ar", "fr"]
+
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+
+      - { label: "Kicker / Tag", name: "kicker", widget: "string", required: false }
+      - { label: "Summary (Lede)", name: "summary", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Featured on Homepage"
+        name: "featured"
+        widget: "boolean"
+        default: false
