@@ -163,7 +163,15 @@ p{ margin:0; }
 .ad-slot span{ font-size:10px; font-weight:600; text-transform:none; letter-spacing:0; color:var(--ink-soft); opacity:.75; }
 .ad-slot.leaderboard{ min-height:90px; }
 .ad-slot.rectangle{ min-height:250px; max-width:300px; margin-inline:auto; }
+.ad-slot.skyscraper{ min-height:600px; max-width:160px; }
+.article-layout{ display:flex; gap:32px; align-items:flex-start; }
+.article-layout .article-main{ flex:1; min-width:0; }
+.article-layout .article-rail{ flex:0 0 160px; position:sticky; top:20px; display:none; }
+@media (min-width:1040px){
+  .article-layout .article-rail{ display:block; }
+}
 .ad-slot.native{ min-height:120px; }
+.ad-slot-live{ margin-block:36px; text-align:center; overflow:hidden; }
 
 /* ---------- Section blocks ---------- */
 .section-block{ padding-block:40px; border-bottom:1px solid var(--line); }

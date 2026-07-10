@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ page.lang }}" dir="{{ site.data.i18n[page.lang].html_dir }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title }} — {% endif %}TrueNews Hub</title>
+<meta name="description" content="{{ page.summary | default: site.description }}">
+<link rel="icon" href="{{ '/assets/logo.svg' | relative_url }}" type="image/svg+xml">
+<link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+
+<!-- ============================================================
+     ADSTERRA: paste your site verification / global ad script
+     between the two comment lines below (applies sitewide).
+     ============================================================ -->
+{% if site.data.ads.head_script and site.data.ads.head_script != "" %}
+{{ site.data.ads.head_script }}
+{% endif %}
+</head>
+<body>
+
+{% include ticker.html %}
+{% include header.html %}
+
+{{ content }}
+
+{% include footer.html %}
+
+<script>
+  document.querySelectorAll('.js-year').forEach(function(el){ el.textContent = new Date().getFullYear(); });
+  function tick(){
+    var d = new Date();
+    document.querySelectorAll('.js-clock').forEach(function(el){
+      el.textContent = d.toUTCString().slice(17,25) + ' UTC';
+    });
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>

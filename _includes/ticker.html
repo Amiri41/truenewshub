@@ -1,0 +1,25 @@
+{% assign t = site.data.i18n[page.lang] %}
+{% assign breaking_articles = site.articles | where: "language", page.lang | sort: "date" | reverse | limit: 6 %}
+<div class="ticker-bar">
+  <div class="container">
+    <span class="ticker-label">{{ t.breaking }}</span>
+    <div class="ticker-track">
+      <ul>
+        {% for a in breaking_articles %}
+        <li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>
+        {% endfor %}
+        {% for a in breaking_articles %}
+        <li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="ticker-meta">
+      <span class="js-clock">--:--:-- UTC</span>
+      <div class="lang-switch">
+        <a href="/" {% if page.lang == 'en' %}aria-current="true"{% endif %}>EN</a>
+        <a href="/ar/" {% if page.lang == 'ar' %}aria-current="true"{% endif %}>AR</a>
+        <a href="/fr/" {% if page.lang == 'fr' %}aria-current="true"{% endif %}>FR</a>
+      </div>
+    </div>
+  </div>
+</div>

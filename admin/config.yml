@@ -10,30 +10,37 @@ locale: "en"
 
 collections:
   - name: "articles"
-    label: "Articles / المقالات / Articles"
+    label: "Articles"
     label_singular: "Article"
-    folder: "content/articles"
+    folder: "_articles"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{language}}-{{category}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
     fields:
-      - { label: "Title (EN)", name: "title_en", widget: "string" }
-      - { label: "العنوان (AR)", name: "title_ar", widget: "string", required: false }
-      - { label: "Titre (FR)", name: "title_fr", widget: "string", required: false }
-
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options: ["sports", "politics", "economy", "world"]
+      - { label: "Title", name: "title", widget: "string" }
 
       - label: "Language"
         name: "language"
         widget: "select"
-        options: ["en", "ar", "fr"]
+        options:
+          - { label: "English", value: "en" }
+          - { label: "العربية", value: "ar" }
+          - { label: "Français", value: "fr" }
 
-      - { label: "Cover Image", name: "image", widget: "image", required: false }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Sports", value: "sports" }
+          - { label: "Politics", value: "politics" }
+          - { label: "Economy", value: "economy" }
+          - { label: "World", value: "world" }
 
       - { label: "Kicker / Tag", name: "kicker", widget: "string", required: false }
+      - { label: "Dateline (city)", name: "dateline", widget: "string", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
       - { label: "Summary (Lede)", name: "summary", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
 
@@ -41,3 +48,46 @@ collections:
         name: "featured"
         widget: "boolean"
         default: false
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "ads"
+        label: "Ads (Adsterra)"
+        file: "_data/ads.yml"
+        fields:
+          - label: "Header Script (site-wide, paste Adsterra verification/global tag)"
+            name: "head_script"
+            widget: "code"
+            output_code_only: true
+            default_language: "html"
+            allow_language_selection: false
+            required: false
+          - label: "Leaderboard Ad (top banner)"
+            name: "leaderboard_code"
+            widget: "code"
+            output_code_only: true
+            default_language: "html"
+            allow_language_selection: false
+            required: false
+          - label: "Native Ad (between sections)"
+            name: "native_code"
+            widget: "code"
+            output_code_only: true
+            default_language: "html"
+            allow_language_selection: false
+            required: false
+          - label: "Rectangle Ad (sidebar/bottom)"
+            name: "rectangle_code"
+            widget: "code"
+            output_code_only: true
+            default_language: "html"
+            allow_language_selection: false
+            required: false
+          - label: "Skyscraper Ad (article sidebar, 160x600)"
+            name: "skyscraper_code"
+            widget: "code"
+            output_code_only: true
+            default_language: "html"
+            allow_language_selection: false
+            required: false

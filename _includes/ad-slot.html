@@ -1,0 +1,14 @@
+{% assign t = site.data.i18n[page.lang] %}
+{% assign ad_code = site.data.ads[include.data_key] %}
+<div class="container">
+  {% if ad_code and ad_code != "" %}
+  <div class="ad-slot-live">
+    {{ ad_code }}
+  </div>
+  {% else %}
+  <div class="ad-slot {{ include.size | default: 'leaderboard' }}">
+    {{ t.advertisement }}
+    <span>Paste your Adsterra code in /admin/ → Site Settings → Ads</span>
+  </div>
+  {% endif %}
+</div>

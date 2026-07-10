@@ -1,0 +1,43 @@
+head_script: |
+  <script src="https://pl30307613.effectivecpmnetwork.com/c2/59/be/c259beccb879571f87628c9e23533f23.js"></script>
+  <script src="https://pl30307571.effectivecpmnetwork.com/a1/b1/3b/a1b13bb004a1a4ce8e926d881f2a6306.js"></script>
+
+leaderboard_code: |
+  <script>
+    atOptions = {
+      'key' : '123ea01076f0bc40894ca8f7ca16f3f6',
+      'format' : 'iframe',
+      'height' : 60,
+      'width' : 468,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/123ea01076f0bc40894ca8f7ca16f3f6/invoke.js"></script>
+
+rectangle_code: |
+  <script>
+    atOptions = {
+      'key' : '3400e71db0d88e9e9dbb09e8c8d54f72',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/3400e71db0d88e9e9dbb09e8c8d54f72/invoke.js"></script>
+
+native_code: |
+  <script async="async" data-cfasync="false" src="https://pl30307614.effectivecpmnetwork.com/2ac1cc5b5794d1a4107b2442db815149/invoke.js"></script>
+  <div id="container-2ac1cc5b5794d1a4107b2442db815149"></div>
+
+skyscraper_code: |
+  <script>
+    atOptions = {
+      'key' : 'b53c9aab3e46c2663e59707107aa3b14',
+      'format' : 'iframe',
+      'height' : 600,
+      'width' : 160,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/b53c9aab3e46c2663e59707107aa3b14/invoke.js"></script>

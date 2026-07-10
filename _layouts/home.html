@@ -1,0 +1,80 @@
+---
+layout: default
+---
+{% assign t = site.data.i18n[page.lang] %}
+{% assign lang_articles = site.articles | where: "language", page.lang | sort: "date" | reverse %}
+{% assign featured = lang_articles | where: "featured", true | first %}
+{% unless featured %}{% assign featured = lang_articles | first %}{% endunless %}
+
+{% assign sports = lang_articles | where: "category", "sports" %}
+{% assign politics = lang_articles | where: "category", "politics" %}
+{% assign economy = lang_articles | where: "category", "economy" %}
+{% assign world = lang_articles | where: "category", "world" %}
+
+<main>
+  {% if featured %}
+  <section class="hero">
+    <div class="container">
+      <p class="dateline"><span class="dot"></span> {{ featured.dateline | default: "TRUENEWS HUB" }} — {{ featured.date | date: "%b %-d, %Y" }}</p>
+      <div class="hero-grid">
+        <article>
+          <a href="{{ featured.url | relative_url }}">
+            <div class="hero-figure" role="img" aria-label="{{ featured.title }}"
+              {% if featured.image %}style="background-image:url('{{ featured.image | relative_url }}');background-size:cover;background-position:center;"{% endif %}></div>
+          </a>
+          <span class="hero-tag">{{ t.top_story }}</span>
+          <h1><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h1>
+          <p class="lede">{{ featured.summary }}</p>
+          <p class="byline">{{ t.by_staff }} · {{ t.world_desk }}</p>
+        </article>
+        <aside class="hero-side">
+          {% for a in lang_articles limit:4 %}
+            {% unless a.url == featured.url %}
+            <div class="side-story">
+              <span class="kicker">{{ t[a.category | prepend: 'cat_'] }}</span>
+              <h3><a href="{{ a.url | relative_url }}">{{ a.title }}</a></h3>
+            </div>
+            {% endunless %}
+          {% endfor %}
+        </aside>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% include ad-slot.html size="leaderboard" data_key="leaderboard_code" %}
+
+  {% for group in "sports,politics,economy,world" | split: "," %}
+    {% assign items = lang_articles | where: "category", group %}
+    {% if items.size > 0 %}
+    <section class="section-block" id="{{ group }}">
+      <div class="container">
+        <div class="section-head">
+          <h2>{{ t[group | prepend: 'nav_'] }}</h2>
+          <a class="see-all" href="#{{ group }}">{{ t.see_all | replace: '%{cat}', t[group | prepend: 'cat_'] }}</a>
+        </div>
+        <div class="story-grid">
+          {% for a in items limit:3 %}
+          <article class="story-card">
+            <a href="{{ a.url | relative_url }}">
+              <figure {% if a.image %}style="background-image:url('{{ a.image | relative_url }}');background-size:cover;background-position:center;"{% endif %}></figure>
+            </a>
+            <span class="kicker">{{ a.kicker | default: t[group | prepend: 'cat_'] }}</span>
+            <h3><a href="{{ a.url | relative_url }}">{{ a.title }}</a></h3>
+            <p>{{ a.summary }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+  {% endfor %}
+
+  {% include ad-slot.html size="rectangle" data_key="rectangle_code" %}
+
+  {% if lang_articles.size == 0 %}
+  <div class="container" style="padding-block:60px;text-align:center;color:var(--ink-soft);">
+    <p>No articles published yet in this language. Add one from <a href="{{ '/admin/' | relative_url }}">the editor</a>.</p>
+  </div>
+  {% endif %}
+</main>

@@ -1,0 +1,40 @@
+{% assign t = site.data.i18n[page.lang] %}
+{% if page.lang == 'en' %}{% assign home_url = "/" %}{% elsif page.lang == 'ar' %}{% assign home_url = "/ar/" %}{% else %}{% assign home_url = "/fr/" %}{% endif %}
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <a class="brand" href="{{ home_url | relative_url }}">
+        <img class="brand-mark" src="{{ '/assets/logo.svg' | relative_url }}" alt="">
+        <span class="brand-text"><strong>TrueNews Hub</strong></span>
+      </a>
+      <p style="margin-top:14px;">{{ t.footer_about }}</p>
+    </div>
+    <div>
+      <h4>{{ t.footer_sections }}</h4>
+      <ul>
+        <li><a href="{{ home_url | relative_url }}#sports">{{ t.nav_sports }}</a></li>
+        <li><a href="{{ home_url | relative_url }}#politics">{{ t.nav_politics }}</a></li>
+        <li><a href="{{ home_url | relative_url }}#economy">{{ t.nav_economy }}</a></li>
+        <li><a href="{{ home_url | relative_url }}#world">{{ t.nav_world }}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>{{ t.footer_languages }}</h4>
+      <ul>
+        <li><a href="/">English</a></li>
+        <li><a href="/ar/">العربية</a></li>
+        <li><a href="/fr/">Français</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>{{ t.footer_newsroom }}</h4>
+      <ul>
+        <li><a href="{{ '/admin/' | relative_url }}">{{ t.editor_login }}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span class="js-year"></span> TrueNews Hub. {{ t.rights }}</span>
+    <a href="{{ '/admin/' | relative_url }}">{{ t.content_management }}</a>
+  </div>
+</footer>

@@ -1,0 +1,24 @@
+title: TrueNews Hub
+description: "Global news, sports, politics and economy in English, Arabic and French."
+url: ""
+baseurl: ""
+
+markdown: kramdown
+plugins:
+  - jekyll-feed
+
+collections:
+  articles:
+    output: true
+    permalink: /:collection/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: "article"
+
+exclude:
+  - README.md
+  - node_modules
