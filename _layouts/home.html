@@ -6,11 +6,6 @@ layout: default
 {% assign featured = lang_articles | where: "featured", true | first %}
 {% unless featured %}{% assign featured = lang_articles | first %}{% endunless %}
 
-{% assign sports = lang_articles | where: "category", "sports" %}
-{% assign politics = lang_articles | where: "category", "politics" %}
-{% assign economy = lang_articles | where: "category", "economy" %}
-{% assign world = lang_articles | where: "category", "world" %}
-
 <main>
   {% if featured %}
   <section class="hero">
@@ -30,8 +25,15 @@ layout: default
         <aside class="hero-side">
           {% for a in lang_articles limit:4 %}
             {% unless a.url == featured.url %}
+            {% case a.category %}
+              {% when "sports" %}{% assign side_cat = t.cat_sports %}
+              {% when "politics" %}{% assign side_cat = t.cat_politics %}
+              {% when "economy" %}{% assign side_cat = t.cat_economy %}
+              {% when "world" %}{% assign side_cat = t.cat_world %}
+              {% else %}{% assign side_cat = a.category %}
+            {% endcase %}
             <div class="side-story">
-              <span class="kicker">{{ t[a.category | prepend: 'cat_'] }}</span>
+              <span class="kicker">{{ side_cat }}</span>
               <h3><a href="{{ a.url | relative_url }}">{{ a.title }}</a></h3>
             </div>
             {% endunless %}
@@ -47,11 +49,20 @@ layout: default
   {% for group in "sports,politics,economy,world" | split: "," %}
     {% assign items = lang_articles | where: "category", group %}
     {% if items.size > 0 %}
+
+      {% case group %}
+        {% when "sports" %}{% assign nav_label = t.nav_sports %}{% assign cat_label = t.cat_sports %}
+        {% when "politics" %}{% assign nav_label = t.nav_politics %}{% assign cat_label = t.cat_politics %}
+        {% when "economy" %}{% assign nav_label = t.nav_economy %}{% assign cat_label = t.cat_economy %}
+        {% when "world" %}{% assign nav_label = t.nav_world %}{% assign cat_label = t.cat_world %}
+      {% endcase %}
+      {% assign see_all_text = t.see_all | replace: '%{cat}', cat_label %}
+
     <section class="section-block" id="{{ group }}">
       <div class="container">
         <div class="section-head">
-          <h2>{{ t[group | prepend: 'nav_'] }}</h2>
-          <a class="see-all" href="#{{ group }}">{{ t.see_all | replace: '%{cat}', t[group | prepend: 'cat_'] }}</a>
+          <h2>{{ nav_label }}</h2>
+          <a class="see-all" href="#{{ group }}">{{ see_all_text }}</a>
         </div>
         <div class="story-grid">
           {% for a in items limit:3 %}
@@ -59,7 +70,7 @@ layout: default
             <a href="{{ a.url | relative_url }}">
               <figure {% if a.image %}style="background-image:url('{{ a.image | relative_url }}');background-size:cover;background-position:center;"{% endif %}></figure>
             </a>
-            <span class="kicker">{{ a.kicker | default: t[group | prepend: 'cat_'] }}</span>
+            <span class="kicker">{{ a.kicker | default: cat_label }}</span>
             <h3><a href="{{ a.url | relative_url }}">{{ a.title }}</a></h3>
             <p>{{ a.summary }}</p>
           </article>
