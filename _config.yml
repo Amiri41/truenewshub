@@ -1,7 +1,7 @@
 title: TrueNews Hub
 description: "Global news, sports, politics and economy in English, Arabic and French."
-url: ""
-baseurl: ""
+url: "https://amiri41.github.io"
+baseurl: "/truenewshub"
 
 markdown: kramdown
 plugins:

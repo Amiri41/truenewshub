@@ -16,9 +16,9 @@
     <div class="ticker-meta">
       <span class="js-clock">--:--:-- UTC</span>
       <div class="lang-switch">
-        <a href="/" {% if page.lang == 'en' %}aria-current="true"{% endif %}>EN</a>
-        <a href="/ar/" {% if page.lang == 'ar' %}aria-current="true"{% endif %}>AR</a>
-        <a href="/fr/" {% if page.lang == 'fr' %}aria-current="true"{% endif %}>FR</a>
+        <a href="{{ '/' | relative_url }}" {% if page.lang == 'en' %}aria-current="true"{% endif %}>EN</a>
+        <a href="{{ '/ar/' | relative_url }}" {% if page.lang == 'ar' %}aria-current="true"{% endif %}>AR</a>
+        <a href="{{ '/fr/' | relative_url }}" {% if page.lang == 'fr' %}aria-current="true"{% endif %}>FR</a>
       </div>
     </div>
   </div>
