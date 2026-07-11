@@ -2,6 +2,7 @@ backend:
   name: github
   repo: Amiri41/truenewshub
   branch: main
+  base_url: https://oauth-provider-theta.vercel.app
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
